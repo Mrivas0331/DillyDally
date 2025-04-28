@@ -1,5 +1,27 @@
 {
+  "name": "dillydally",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mrivas0331/DillyDally.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mrivas0331/DillyDally/issues"
+  },
+  "homepage": "https://github.com/Mrivas0331/DillyDally#readme",
+  "description": "",
   "dependencies": {
+    "express": "^5.1.0",
     "node-persist": "^4.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
