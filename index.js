@@ -1,22 +1,31 @@
-import express from "express";
-//import NodePersist from "node-persist";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-//const storage = NodePersist.create();
-//storage.init();
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import * as storage from 'node-persist';
 
 const app = express();
-const port = 5500;
-app.get("/index.html", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+const PORT = 3000;
+
+// This is needed because you're using "import" syntax (ES Modules)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the current directory
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
+
+
+
+
+
+(async () => {
+    await storage.init();
 });
-app.use(express.json());
 
 
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
