@@ -62,7 +62,22 @@ app.get('/delete/:key', async (req, res) => {
     }
 });
 
-
+app.get('/getAll', async (req, res) => {
+    try {
+        const keys = await storage.keys();
+        const products = [];
+        for (const key of keys) {
+            const value = await storage.getItem(key);
+            if (value) {
+                products.push(value);
+            }
+        }
+        res.send(products);
+    } catch (error) {
+        console.error("Error fetching all products");
+        res.status(500).send({error: "fales to load products"});
+    }
+});
 
 // Start the server
 app.listen(PORT, () => {
