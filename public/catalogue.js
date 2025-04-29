@@ -6,8 +6,9 @@ async function loadAllProducts() {
     catalogContainer.innerHTML ='';
 
     products.forEach(element => {
+        console.log(element.key);
         const productLink = document.createElement('a');
-        productLink.href=`/product/${element.key}`;
+        productLink.href = `/product.html?key=${element.key}`;
         productLink.style.textDecoration = 'none';
         productLink.style.color = 'inherit';
 
@@ -15,13 +16,13 @@ async function loadAllProducts() {
         productDiv.classList.add('product');
         
         productDiv.innerHTML= `
-        <img src="${element.img}" alt="${element.name}" class="product-image"/>
-        <h3>${element.name}</h3>
-        <p>Price: $${element.price}</p>
-        <p>${element.desc}</p>`;
+        <img src="${element.value.img}" alt="${element.value.name}" class="product-image"/>
+        <h3>${element.value.name}</h3>
+        <p>Price: $${element.value.price}</p>
+        <p>${element.value.desc}</p>`;
 
         productLink.append(productDiv);
-        catalogContainer.appendChild(productDiv);
+        catalogContainer.appendChild(productLink);
     });
 
 }

@@ -69,7 +69,7 @@ app.get('/getAll', async (req, res) => {
         for (const key of keys) {
             const value = await storage.getItem(key);
             if (value) {
-                products.push(value);
+                products.push({key, value});
             }
         }
         res.send(products);
@@ -78,6 +78,15 @@ app.get('/getAll', async (req, res) => {
         res.status(500).send({error: "fales to load products"});
     }
 });
+
+app.get('/getProduct/:key', async (req, res) => {
+    const key = req.params.key;
+    const value = await storage.getItem(key);
+    if (!value) {
+        return res.status(404).json({error: 'Product not found'});
+    }
+    res.json({key, value});
+})
 
 
 // Start the server
