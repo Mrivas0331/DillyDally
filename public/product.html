@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <script src="./product.js"></script>
+    <style>
+        .product-image {
+            width: 300px;
+            height: auto;
+        }
+        button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a href="./catalogue.html"><button>Back to catalog</button></a>
+    <br>
+    <h1>Product Details</h1>
+    <div id="product">
+        <p><strong>Product Name:</strong> <span id="nameout"></span></p>
+        <p><strong>Price:</strong> $<span id="priceout"></span></p>
+        <p><strong>Description:</strong> <span id="descout"></span></p>
+        <img id="imgout" class="product-image" src="" alt="Product Image"/>
+    </div>
+    <div id="result"></div>
+</body>
+</html>

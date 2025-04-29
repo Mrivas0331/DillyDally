@@ -6,6 +6,11 @@ async function loadAllProducts() {
     catalogContainer.innerHTML ='';
 
     products.forEach(element => {
+        const productLink = document.createElement('a');
+        productLink.href=`/product/${element.key}`;
+        productLink.style.textDecoration = 'none';
+        productLink.style.color = 'inherit';
+
         const productDiv = document.createElement('div');
         productDiv.classList.add('product');
         
@@ -14,6 +19,8 @@ async function loadAllProducts() {
         <h3>${element.name}</h3>
         <p>Price: $${element.price}</p>
         <p>${element.desc}</p>`;
+
+        productLink.append(productDiv);
         catalogContainer.appendChild(productDiv);
     });
 
