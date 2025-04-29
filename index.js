@@ -22,14 +22,17 @@ storage.init()
     });
 
 app.post('/save', async (req, res) => {
-    const {key, value} = req.body;
-    if (!key || !value) {
+    //works here
+    const {key, product} = req.body;
+    //works here
+    if (!key || !product) {
+        console.log("stops")
         return res.status(400).send("missing key or value");
     }
-
     try {
-        await storage.setItem(key, value);
-        console.log(`Received key: ${key}, value: ${value}`)
+        console.log("works");
+        await storage.setItem(key, product);
+        console.log(`Received key: ${key}, Product: ${JSON.stringify(product)}`)
         res.send({message: 'Data saved'});
     } catch (error) {
         console.error("Error saving data: ", error);
@@ -39,7 +42,7 @@ app.post('/save', async (req, res) => {
 // How to catch slug in express
 app.get('/get/:key', async (req, res) => {
     const {key} = req.params;
-    console.log(key);
+    console.log(`${key} being displayed`);
     const value = await storage.getItem(key);
     if (value === undefined) {
         res.status(404).send({error: "Key not found"});
@@ -50,7 +53,7 @@ app.get('/get/:key', async (req, res) => {
 
 app.get('/delete/:key', async (req, res) => {
     const {key} = req.params;
-    console.log(key);
+    console.log(`${key} was deleted`);
     const value = await storage.removeItem(key);
     if (value === undefined) {
         res.status(404).send({error: "Key not found"});
