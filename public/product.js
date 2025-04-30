@@ -19,6 +19,20 @@ window.onload = async() => {
         document.getElementById('descout').innerText = `${data.value.desc}\n`;
         document.getElementById('imgout').src = `${data.value.img}`;
 
+        //cart feature
+        document.getElementById('addtocart').addEventListener('click', () => {
+            const product = {
+                key: data.key,
+                name: data.value.name,
+                img: data.value.img
+            };
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log(cart);
+            alert('Product added to cart!');
+        })
+
     } catch (err) {
         console.error(err);
         document.getElementById('result').innerText = 'Error loading product';
